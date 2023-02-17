@@ -1,0 +1,26 @@
+{
+    "BALL" : {
+        "radius" : 10,
+        "start_x" : 400,
+        "start_y" : 300,
+        "color" : [255, 0, 0],
+        "speed_falloff" : [89, 90],
+        "max_speed" : 50 
+    },
+    "FRAME" : {
+        "width" : 400,
+        "height" : 400,
+        "start_x" : 400,
+        "start_y" : 300,
+        "color" : [0, 0, 0]
+    },
+    "GAME" : {
+        "window_width" : 1920,
+        "window_height" : 1080,
+        "framerate" : 160,
+        "background_color" : [255, 255, 255],
+        "power_to_speed" : 0.86,
+        "friction" : 0.3,
+        "border_interaction" : 2
+    }
+}
