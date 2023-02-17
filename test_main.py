@@ -1,4 +1,4 @@
-import pygame
+import pygame as pg
 from classes.classBall import Ball
 from classes.classFrame import Frame
 from functions.defs import calculate_speed, calculate_friction
@@ -15,22 +15,20 @@ bi = game_settings["border_interaction"]
 window_width = game_settings["window_width"]
 window_height = game_settings["window_height"]
 framerate = game_settings["framerate"]
-background = pygame.image.load("images/bg.jpg")
-icon = pygame.image.load("images/icon.png")
+background = pg.image.load("images/bg.jpg")
+icon = pg.image.load("images/icon.png")
 
 
-# Initialize pygame
-pygame.init()
+# Initialize pg
+pg.init()
 ball = Ball()
 frame = Frame()
-screen = pygame.display.set_mode((window_width, window_height))
-pygame.display.set_caption("Your mother: THE GAME")
-pygame.mouse.set_visible(False)
-pygame.display.set_icon(icon)
-pause_text = pygame.font.SysFont("Arial", 32).render(
-    "Pause", True, pygame.color.Color("White")
-)
-clock = pygame.time.Clock()
+screen = pg.display.set_mode((window_width, window_height))
+pg.display.set_caption("Your mother: THE GAME")
+pg.mouse.set_visible(False)
+pg.display.set_icon(icon)
+pause_text = pg.font.SysFont("Arial", 32).render("Pause", True, pg.color.Color("White"))
+clock = pg.time.Clock()
 RUNNING, PAUSE = 0, 1
 state = RUNNING
 
@@ -38,15 +36,15 @@ state = RUNNING
 # Game loop
 running = True
 while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+    for event in pg.event.get():
+        if event.type == pg.QUIT:
             running = False
 
-        if event.type == pygame.MOUSEMOTION:
+        if event.type == pg.MOUSEMOTION:
             frame.change_pos(event.pos)
 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
+        if event.type == pg.KEYDOWN:
+            if event.key == pg.K_ESCAPE:
                 if state == PAUSE:
                     state = RUNNING
                 else:
@@ -109,10 +107,10 @@ while running:
             ball.y += ball.velocity_y
             # * Drawing everything
             screen.blit(background, (0, 0))
-            pygame.draw.rect(
+            pg.draw.rect(
                 screen, frame.color, (frame.x, frame.y, frame.width, frame.height), 5
             )
-            pygame.draw.circle(
+            pg.draw.circle(
                 screen, ball.color, (int(ball.x), int(ball.y)), ball.radius, 0
             )
             # * After everything is drawn
@@ -123,8 +121,8 @@ while running:
         elif state == PAUSE:
             screen.blit(pause_text, (900, 520))
 
-    pygame.display.update()
+    pg.display.update()
     clock.tick(framerate)
 
-# ? Quit pygame
-pygame.quit()
+# ? Quit pg
+pg.quit()
